@@ -3,7 +3,10 @@
     "target": "es5",
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["components/*"]
+      "@/components/*": ["components/*"],
+      "@/config": ["config"],
+      "@/shared": ["shared"],
+      "@/styles/*": ["styles/*"]
     },
     "lib": [
       "dom",

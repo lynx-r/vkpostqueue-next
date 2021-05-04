@@ -1,0 +1,33 @@
+@windicss;
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+#__next {
+    height: 100%;
+}
+
+/* unvisited link */
+a:link {
+    @apply text-light-blue-700;
+}
+
+/* visited link */
+a:visited {
+    @apply text-light-blue-900;
+}
+
+/* mouse over link */
+a:hover {
+    @apply text-light-blue-600;
+}
+
+/* selected link */
+a.active {
+    @apply text-light-blue-700 font-bold;
+}

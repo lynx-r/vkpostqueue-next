@@ -1,26 +1,26 @@
 module.exports = {
   // Specifies the ESLint parser
-  parser: "@typescript-eslint/parser",
+  parser: '@typescript-eslint/parser',
   extends: [
-    "eslint:recommended",
-    "airbnb",
-    "airbnb/hooks",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings",
-    "plugin:import/typescript",
-    "plugin:jsx-a11y/recommended",
-    "plugin:react-hooks/recommended",
-    "plugin:prettier/recommended",
+    'eslint:recommended',
+    'airbnb',
+    'airbnb/hooks',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react/recommended',
+    'plugin:import/errors',
+    'plugin:import/warnings',
+    'plugin:import/typescript',
+    'plugin:jsx-a11y/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:prettier/recommended',
     // always put prettier at last
-    "prettier",
+    'prettier',
   ],
   settings: {
     react: {
-      version: "latest",
+      version: 'latest',
     },
-    "import/resolver": {
+    'import/resolver': {
       typescript: {}, // this loads <rootdir>/tsconfig.json to eslint
     },
   },
@@ -29,7 +29,7 @@ module.exports = {
     node: true,
     es6: true,
   },
-  plugins: ["@typescript-eslint", "react", "react-hooks"],
+  plugins: ['@typescript-eslint', 'react', 'react-hooks'],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -37,25 +37,26 @@ module.exports = {
     // Allows for the parsing of modern ECMAScript features
     ecmaVersion: 12,
     // Allows for the use of imports
-    sourceType: "module",
+    sourceType: 'module',
   },
   rules: {
     // NextJs specific fix: suppress errors for missing 'import React' in files for nextjs
-    "react/react-in-jsx-scope": "off",
+    'react/react-in-jsx-scope': 'off',
     // NextJs specific fix: allow jsx syntax in js files
-    "react/jsx-filename-extension": [
+    'react/jsx-filename-extension': [
       1,
-      { extensions: [".js", ".jsx", ".ts", ".tsx"] },
+      { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
     ],
-    "react/display-name": 1,
+    'react/display-name': 1,
     // Disable prop-types as we use TypeScript for type checking
-    "react/prop-types": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "react/jsx-props-no-spreading": "off",
-    "prettier/prettier": "error",
-    "@typescript-eslint/interface-name-prefix": "off",
+    'react/prop-types': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'prettier/prettier': 'error',
+    'jsx-a11y/anchor-is-valid': 'off',
+    '@typescript-eslint/interface-name-prefix': 'off',
     // "@typescript-eslint/no-explicit-any": "off",
     // "@typescript-eslint/ban-ts-ignore": "off",
   },
-  globals: { React: "writable" },
-};
+  globals: { React: 'writable' },
+}
