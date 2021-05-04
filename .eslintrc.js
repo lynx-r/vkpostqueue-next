@@ -18,7 +18,7 @@ module.exports = {
   ],
   settings: {
     react: {
-      version: 'latest',
+      version: 'detect',
     },
     'import/resolver': {
       typescript: {}, // this loads <rootdir>/tsconfig.json to eslint
