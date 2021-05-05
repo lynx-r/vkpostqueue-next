@@ -13,7 +13,7 @@ const Auth: FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { isValid, isDirty, errors },
+    formState: { errors },
   } = useForm()
 
   const onSubmit = (formData) => {
@@ -30,19 +30,20 @@ const Auth: FC = () => {
       INVALID_VK_AUTH_URL_ERROR,
   }
   return (
-    <div>
+    <div className="flex flex-col space-y-4">
       <a
         href={vkAuthorizeUrl}
         target="_blank"
-        className="bg-blue-300 w-96 block text-center rounded p-2 shadow"
+        className="button-primary w-96"
         rel="noreferrer"
       >
         {vkAuthWindow
           ? 'Получить ссылку авторизации в ВКонтакте'
           : 'Авторизоваться в Vk.com'}
       </a>
-      <form>
+      <form className="flex items-center space-x-4">
         <Textarea
+          className="h-40"
           register={register('accessTokenUrl', vkAuthUrlRegisterOpts)}
           errors={errors}
         >

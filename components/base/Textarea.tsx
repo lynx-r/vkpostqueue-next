@@ -10,18 +10,13 @@ const Textarea: FC<TextareaProps> = ({
   ...rest
 }) => {
   return (
-    <div className="flex flex-col h-full">
+    <div className={`flex flex-col ${className}`}>
       <label htmlFor="textarea">{children}</label>
-      <textarea
-        {...register}
-        id="textarea"
-        className={`${className} h-full`}
-        {...rest}
-      />
+      <textarea {...register} id="textarea" className="h-full" {...rest} />
       <ErrorMessage
         errors={errors}
         name={register.name}
-        render={({ message }) => <p className="error-text-color">{message}</p>}
+        render={({ message }) => <p className="error-text">{message}</p>}
       />
     </div>
   )

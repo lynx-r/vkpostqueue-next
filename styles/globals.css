@@ -10,26 +10,34 @@ body {
     height: 100%;
 }
 
+.bg-primary {
+    @apply bg-primary-300
+}
+
 /* unvisited link */
 a:link {
-    @apply text-light-blue-700;
+    @apply text-primary-700;
 }
 
 /* visited link */
 a:visited {
-    @apply text-light-blue-900;
+    @apply text-primary-900;
 }
 
 /* mouse over link */
 a:hover {
-    @apply text-light-blue-600;
+    @apply text-primary-600;
 }
 
 /* selected link */
 a.active {
-    @apply text-light-blue-700 font-bold;
+    @apply text-primary-700 font-bold;
 }
 
-.error-text-color {
-    @apply text-red-700;
+.error-text {
+    @apply text-danger-500;
+}
+
+.button-primary {
+    @apply bg-primary-300 block text-center rounded p-2 shadow text-primary-900
 }

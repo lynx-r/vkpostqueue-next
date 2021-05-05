@@ -6,7 +6,7 @@ import { FC } from 'react'
 const Header: FC<BaseElementProps> = ({ className }) => {
   return (
     <header
-      className={`${className} h-16 flex items-center space-x-12 bg-blue-300 shadow-lg px-8 mb-8`}
+      className={`${className} bg-primary h-16 flex items-center space-x-12 shadow-lg px-8 mb-8`}
     >
       <NavLink href="/">
         <a>Главная</a>

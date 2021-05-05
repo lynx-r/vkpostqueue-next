@@ -3,7 +3,7 @@ import { FC } from 'react'
 
 const Footer: FC<BaseElementProps> = () => {
   return (
-    <footer className="flex items-center justify-center h-12 bg-blue-100 bg-opacity-50 mt-8 shadow">
+    <footer className="bg-primary-100 flex items-center justify-center h-12 mt-8 shadow">
       <div>VkPostQueue - {new Date().getFullYear()}</div>
     </footer>
   )
