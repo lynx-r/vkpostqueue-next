@@ -4,9 +4,9 @@
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["components/*"],
-      "@/config": ["config"],
+      "@/styles/*": ["styles/*"],
       "@/shared": ["shared"],
-      "@/styles/*": ["styles/*"]
+      "@/config": ["config"]
     },
     "lib": [
       "dom",

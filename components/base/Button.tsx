@@ -4,7 +4,12 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   twColor?: string
 }
 
-const Button: FC<ButtonProps> = ({ twColor = '', children, type, ...rest }) => {
+const Button: FC<ButtonProps> = ({
+  children,
+  twColor = '',
+  type = 'button',
+  ...rest
+}) => {
   return (
     // eslint-disable-next-line react/button-has-type
     <button className={`${twColor} rounded p-2 shadow`} type={type} {...rest}>
