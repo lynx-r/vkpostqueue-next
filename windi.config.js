@@ -18,6 +18,7 @@ export default defineConfig({
       danger: colors.red,
     }),
   },
+  plugins: [require('windicss/plugin/forms')],
 
   //   extend: {
   //     screens: {

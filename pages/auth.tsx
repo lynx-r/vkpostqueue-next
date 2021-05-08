@@ -1,12 +1,17 @@
 import Button from '@/components/base/Button'
 import Textarea from '@/components/base/Textarea'
-import { FIELD_REQUIRED_ERROR, INVALID_VK_AUTH_URL_ERROR } from '@/config'
+import {
+  FIELD_REQUIRED_ERROR,
+  INVALID_VK_AUTH_URL_ERROR,
+  QUEUE_URL,
+} from '@/config'
+import useSetUserAuth from 'hooks/useSetUserAuth'
 import getConfig from 'next/config'
-import { FC } from 'react'
+import { useRouter } from 'next/router'
+import { FC, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
 const { publicRuntimeConfig } = getConfig()
-
 const { vkAuthorizeUrl, vkAuthWindow } = publicRuntimeConfig
 
 const Auth: FC = () => {
@@ -15,9 +20,21 @@ const Auth: FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm()
+  const { push } = useRouter()
+  const setUserAuth = useSetUserAuth()
+  const [tokenCreatedAt, setTokenCreatedAt] = useState(new Date().getTime())
 
-  const onSubmit = (formData) => {
-    alert(JSON.stringify(formData))
+  const onSubmit = ({ accessTokenUrl }) => {
+    const url = accessTokenUrl.trim()
+    const accessToken = url.match(/access_token=(\w+)/)[1]
+    const userId = +url.match(/user_id=(\w+)/)[1]
+    const auth = { accessToken, userId }
+
+    const expiresIn = +url.match(/expires_in=(\w+)/)[1]
+    const date = { tokenCreatedAt, expiresIn }
+
+    setUserAuth(auth, date)
+    push(QUEUE_URL)
   }
 
   const vkAuthUrlRegisterOpts = {
@@ -36,6 +53,7 @@ const Auth: FC = () => {
         target="_blank"
         className="button-primary w-96"
         rel="noreferrer"
+        onClick={() => setTokenCreatedAt(new Date().getTime())}
       >
         {vkAuthWindow
           ? 'Получить ссылку авторизации в ВКонтакте'
