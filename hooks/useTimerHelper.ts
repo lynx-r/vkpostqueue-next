@@ -1,5 +1,5 @@
 import { timerReducer, TYPES } from '@/reducers'
-import { OppOnHours, TimerReducer, UseTimerHelper } from '@/shared'
+import { DateTime, OppOnHours, TimerReducer, TimerState } from '@/shared'
 import { useReducer } from 'react'
 import {
   addHoursAndReformat,
@@ -16,9 +16,10 @@ const oppOnHours: { [key in OppOnHours]: typeof addHoursAndReformat } = {
   sub: subHoursAndReformat,
 }
 
-const nearestFactory = ({ date, time }, dispatch) => (): void => {
-  const fmtTime = getRoundedTime(time)
-  dispatch({ type: TYPES.DATE_TIME, value: { date, time: fmtTime } })
+const nearestFactory = (dispatch) => (): void => {
+  const date = formatDate(new Date())
+  const time = getRoundedTimeFromDate(new Date())
+  dispatch({ type: TYPES.DATE_TIME, value: { date, time } })
 }
 
 const roundTimeFactory = ({ date, time }, dispatch, nearest) => (): void => {
@@ -41,15 +42,30 @@ const oppHoursFactory = ({ time }, dispatch, nearest, opp: OppOnHours) => (
   dispatch({ type: TYPES.TIME, value: roundedTime })
 }
 
-const useTimerHelpers: UseTimerHelper = () => {
+const useTimerHelper = (): {
+  state: TimerState
+  nearest: () => void
+  roundTime: () => void
+  addHours: (hours: number) => void
+  subHours: (hours: number) => void
+  setDate: (date: string) => void
+  setTime: (time: string) => void
+  setDateTime: (dateTime: DateTime) => void
+} => {
   const [state, dispatch] = useReducer<TimerReducer>(timerReducer, {
     date: formatDate(new Date()),
     time: getRoundedTimeFromDate(new Date()),
   })
+  const setDate = (date) => {
+    dispatch({ type: TYPES.DATE, value: date })
+  }
+  const setTime = (time) => {
+    dispatch({ type: TYPES.TIME, value: time })
+  }
   const setDateTime = (dateTime) => {
     dispatch({ type: TYPES.DATE_TIME, value: dateTime })
   }
-  const nearest = nearestFactory(state, dispatch)
+  const nearest = nearestFactory(dispatch)
   const roundTime = roundTimeFactory(state, dispatch, nearest)
   const addHours = oppHoursFactory(state, dispatch, nearest, 'add')
   const subHours = oppHoursFactory(state, dispatch, nearest, 'sub')
@@ -59,8 +75,10 @@ const useTimerHelpers: UseTimerHelper = () => {
     roundTime,
     addHours,
     subHours,
+    setDate,
+    setTime,
     setDateTime,
   }
 }
 
-export default useTimerHelpers
+export default useTimerHelper

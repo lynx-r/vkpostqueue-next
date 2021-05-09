@@ -1,9 +1,13 @@
 import Button from '@/components/base/Button'
 import DateInput from '@/components/base/DateInput'
 import TimeInput from '@/components/base/TimeInput'
-import useTimerHelpers from '@/hooks/useTimerHelper'
+import useTimerHelper from '@/hooks/useTimerHelper'
+import useTimerValidator from '@/hooks/useTimerValidator'
+import { DateTime } from '@/shared'
 import { FC, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+
+type TimerForm = { timer: DateTime }
 
 const Timer: FC = () => {
   const {
@@ -12,25 +16,21 @@ const Timer: FC = () => {
     roundTime,
     addHours,
     subHours,
-    setDateTime,
-  } = useTimerHelpers()
+    setDate,
+    setTime,
+  } = useTimerHelper()
 
   const {
     register,
     setValue,
-    getValues,
     formState: { errors },
-  } = useForm()
+  } = useForm<TimerForm>()
+
+  const { dateInputValidator, timeInputValidator } = useTimerValidator(state)
 
   useEffect(() => {
-    setValue('date', state.date)
-    setValue('time', state.time)
+    setValue('timer', { ...state }, { shouldValidate: true, shouldDirty: true })
   }, [state, setValue])
-
-  const updateDateTime = () => {
-    const [date, time] = getValues(['date', 'time'])
-    setDateTime({ date, time })
-  }
 
   return (
     <div className="space-y-2">
@@ -50,16 +50,16 @@ const Timer: FC = () => {
       </div>
       <div className="flex space-x-4">
         <DateInput
-          register={register('date')}
+          register={register('timer.date', dateInputValidator)}
           errors={errors}
-          onBlur={updateDateTime}
+          onChange={(e) => setDate(e.target.value)}
         >
           Дата поста
         </DateInput>
         <TimeInput
-          register={register('time')}
+          register={register('timer.time', timeInputValidator)}
           errors={errors}
-          onBlur={updateDateTime}
+          onChange={(e) => setTime(e.target.value)}
         >
           Время поста
         </TimeInput>
