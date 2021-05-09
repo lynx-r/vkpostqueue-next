@@ -41,3 +41,7 @@ a.active {
 .button-primary {
     @apply bg-primary-300 block text-center rounded p-2 shadow text-primary-900
 }
+
+.button-secondary {
+    @apply bg-secondary-300 block text-center rounded p-2 shadow text-primary-900
+}

@@ -1,8 +1,7 @@
 import { ButtonHTMLAttributes, FC } from 'react'
+import { ThemeProps } from '@/shared'
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  colorType?: string
-}
+type ButtonProps = ThemeProps & ButtonHTMLAttributes<HTMLButtonElement>
 
 const Button: FC<ButtonProps> = ({
   children,
