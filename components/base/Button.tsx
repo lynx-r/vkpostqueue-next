@@ -1,5 +1,5 @@
+import ThemeProps from '@/shared/ThemeProps'
 import { ButtonHTMLAttributes, FC } from 'react'
-import { ThemeProps } from '@/shared'
 
 type ButtonProps = ThemeProps & ButtonHTMLAttributes<HTMLButtonElement>
 

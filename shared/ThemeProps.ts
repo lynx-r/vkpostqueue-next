@@ -1,3 +1,5 @@
-export interface ThemeProps {
+type ThemeProps = {
   colorType?: 'primary' | 'secondary' | 'danger'
 }
+
+export default ThemeProps

@@ -1,12 +1,11 @@
 import TextError from '@/components/base/TextError'
 import UseFormHookProps from '@/shared/UseFormHookProps'
 import { ErrorMessage } from '@hookform/error-message'
-import { FC, TextareaHTMLAttributes } from 'react'
+import { FC, InputHTMLAttributes } from 'react'
 
-type TextareaProps = UseFormHookProps &
-  TextareaHTMLAttributes<HTMLTextAreaElement>
+type InputProps = UseFormHookProps & InputHTMLAttributes<HTMLInputElement>
 
-const Textarea: FC<TextareaProps> = ({
+const TimeInput: FC<InputProps> = ({
   children,
   register,
   errors,
@@ -15,8 +14,10 @@ const Textarea: FC<TextareaProps> = ({
 }) => {
   return (
     <div className={`flex flex-col ${className}`}>
-      <label htmlFor="textarea">{children}</label>
-      <textarea {...register} id="textarea" className="h-full" {...rest} />
+      <label htmlFor="input" className="">
+        {children}
+      </label>
+      <input {...register} id="input" type="time" {...rest} />
       <ErrorMessage
         errors={errors}
         name={register.name}
@@ -26,4 +27,4 @@ const Textarea: FC<TextareaProps> = ({
   )
 }
 
-export default Textarea
+export default TimeInput

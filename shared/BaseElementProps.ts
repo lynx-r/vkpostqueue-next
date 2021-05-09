@@ -1,3 +1,5 @@
-export interface BaseElementProps {
+type BaseElementProps = {
   className?: string
 }
+
+export default BaseElementProps

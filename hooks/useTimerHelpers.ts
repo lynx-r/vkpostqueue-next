@@ -21,7 +21,7 @@ const TYPES = {
   DATE: 'DATE',
   TIME: 'TIME',
   DATE_TIME: 'DATE_TIME',
-}
+} as const
 
 const timerReducer = (state, action) => {
   switch (action.type) {
@@ -63,8 +63,9 @@ const oppHoursFactory = ({ time }, dispatch, nearest, opp: OppOnHours) => (
   dispatch({ type: TYPES.TIME, value: roundedTime })
 }
 
-type TimerState = { date: string; time: string }
-type TimerAction = { value: string }
+type DateTime = { date: string; time: string }
+type TimerState = DateTime
+type TimerAction = { type: keyof typeof TYPES; value: DateTime | string }
 
 type UseTimerHelpers = () => {
   state: TimerState
@@ -72,6 +73,7 @@ type UseTimerHelpers = () => {
   roundTime: () => void
   addHours: (hours: number) => void
   subHours: (hours: number) => void
+  setDateTime: (dateTime: DateTime) => void
 }
 
 type TimerReducer = Reducer<TimerState, TimerAction>
@@ -81,6 +83,9 @@ const useTimerHelpers: UseTimerHelpers = () => {
     date: formatDate(new Date()),
     time: getRoundedTimeFromDate(new Date()),
   })
+  const setDateTime = (dateTime) => {
+    dispatch({ type: TYPES.DATE_TIME, value: dateTime })
+  }
   const nearest = nearestFactory(state, dispatch)
   const roundTime = roundTimeFactory(state, dispatch, nearest)
   const addHours = oppHoursFactory(state, dispatch, nearest, 'add')
@@ -91,6 +96,7 @@ const useTimerHelpers: UseTimerHelpers = () => {
     roundTime,
     addHours,
     subHours,
+    setDateTime,
   }
 }
 
