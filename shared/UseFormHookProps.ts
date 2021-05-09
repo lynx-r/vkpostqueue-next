@@ -1,4 +1,3 @@
-import { TextareaHTMLAttributes } from 'react'
 import {
   DeepMap,
   FieldErrors,
@@ -6,8 +5,9 @@ import {
   UseFormRegisterReturn,
 } from 'react-hook-form'
 
-export interface TextareaProps
-  extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+type UseFormHookProps = {
   register: UseFormRegisterReturn
   errors: DeepMap<FieldValues, FieldErrors>
 }
+
+export default UseFormHookProps
