@@ -1,8 +1,9 @@
-import { Reducer, useReducer } from 'react'
+import { timerReducer, TYPES } from '@/reducers'
+import { OppOnHours, TimerReducer, UseTimerHelper } from '@/shared'
+import { useReducer } from 'react'
 import {
   addHoursAndReformat,
   formatDate,
-  formatTime,
   getRoundedTime,
   getRoundedTimeFromDate,
   isValidDatetime,
@@ -10,32 +11,9 @@ import {
   subHoursAndReformat,
 } from 'shared/timeUtils'
 
-type OppOnHours = 'add' | 'sub'
-
 const oppOnHours: { [key in OppOnHours]: typeof addHoursAndReformat } = {
   add: addHoursAndReformat,
   sub: subHoursAndReformat,
-}
-
-const TYPES = {
-  DATE: 'DATE',
-  TIME: 'TIME',
-  DATE_TIME: 'DATE_TIME',
-} as const
-
-const timerReducer = (state, action) => {
-  switch (action.type) {
-    case TYPES.DATE:
-      return { ...state, date: action.value }
-    case TYPES.TIME:
-      return { ...state, time: action.value }
-    case TYPES.DATE_TIME: {
-      const { date, time } = action.value
-      return { ...state, date, time }
-    }
-    default:
-      return state
-  }
 }
 
 const nearestFactory = ({ date, time }, dispatch) => (): void => {
@@ -63,22 +41,7 @@ const oppHoursFactory = ({ time }, dispatch, nearest, opp: OppOnHours) => (
   dispatch({ type: TYPES.TIME, value: roundedTime })
 }
 
-type DateTime = { date: string; time: string }
-type TimerState = DateTime
-type TimerAction = { type: keyof typeof TYPES; value: DateTime | string }
-
-type UseTimerHelpers = () => {
-  state: TimerState
-  nearest: () => void
-  roundTime: () => void
-  addHours: (hours: number) => void
-  subHours: (hours: number) => void
-  setDateTime: (dateTime: DateTime) => void
-}
-
-type TimerReducer = Reducer<TimerState, TimerAction>
-
-const useTimerHelpers: UseTimerHelpers = () => {
+const useTimerHelpers: UseTimerHelper = () => {
   const [state, dispatch] = useReducer<TimerReducer>(timerReducer, {
     date: formatDate(new Date()),
     time: getRoundedTimeFromDate(new Date()),

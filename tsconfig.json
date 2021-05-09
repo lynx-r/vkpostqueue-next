@@ -6,8 +6,10 @@
       "@/components/*": ["components/*"],
       "@/styles/*": ["styles/*"],
       "@/shared/*": ["shared/*"],
-      "@/shared": ["shared"],
-      "@/config": ["config"]
+      "@/hooks/*": ["hooks/*"],
+      "@/shared": ["shared/index.ts"],
+      "@/reducers": ["reducers/index.ts"],
+      "@/config": ["config/index.ts"]
     },
     "lib": [
       "dom",

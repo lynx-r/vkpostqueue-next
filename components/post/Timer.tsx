@@ -1,7 +1,7 @@
 import Button from '@/components/base/Button'
 import DateInput from '@/components/base/DateInput'
 import TimeInput from '@/components/base/TimeInput'
-import useTimerHelpers from 'hooks/useTimerHelpers'
+import useTimerHelpers from '@/hooks/useTimerHelper'
 import { FC, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
