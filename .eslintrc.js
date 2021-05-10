@@ -28,6 +28,7 @@ module.exports = {
     browser: true,
     node: true,
     es6: true,
+    jest: true,
   },
   plugins: ['@typescript-eslint', 'react', 'react-hooks'],
   parserOptions: {
@@ -57,6 +58,12 @@ module.exports = {
     '@typescript-eslint/interface-name-prefix': 'off',
     // "@typescript-eslint/no-explicit-any": "off",
     // "@typescript-eslint/ban-ts-ignore": "off",
+    'no-console': [
+      2,
+      {
+        allow: ['warn', 'error'],
+      },
+    ],
   },
   globals: { React: 'writable' },
 }
