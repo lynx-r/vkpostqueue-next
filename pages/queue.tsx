@@ -3,9 +3,9 @@ import { FC } from 'react'
 
 const Queue: FC = () => {
   return (
-    <div>
+    <>
       <Timer />
-    </div>
+    </>
   )
 }
 

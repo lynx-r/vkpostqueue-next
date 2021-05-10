@@ -6,12 +6,12 @@ const Home: FC = () => {
     // todo
   }
   return (
-    <div>
+    <>
       <h1>Добро пожаловать!</h1>
       <div>
         <Button onClick={onRegisterSw}>Включить уведомления</Button>
       </div>
-    </div>
+    </>
   )
 }
 export default Home

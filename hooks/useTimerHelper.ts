@@ -1,5 +1,11 @@
 import { timerReducer, TYPES } from '@/reducers'
-import { DateTime, OppOnHours, TimerReducer, TimerState } from '@/shared'
+import {
+  DateTime,
+  OppOnHours,
+  TimerHelper,
+  TimerReducer,
+  TimerState,
+} from '@/shared'
 import { useReducer } from 'react'
 import {
   addHoursAndReformat,
@@ -42,20 +48,12 @@ const oppHoursFactory = ({ time }, dispatch, nearest, opp: OppOnHours) => (
   dispatch({ type: TYPES.TIME, value: roundedTime })
 }
 
-const useTimerHelper = (): {
-  state: TimerState
-  nearest: () => void
-  roundTime: () => void
-  addHours: (hours: number) => void
-  subHours: (hours: number) => void
-  setDate: (date: string) => void
-  setTime: (time: string) => void
-  setDateTime: (dateTime: DateTime) => void
-} => {
+const useTimerHelper = (): TimerHelper => {
   const [state, dispatch] = useReducer<TimerReducer>(timerReducer, {
     date: formatDate(new Date()),
     time: getRoundedTimeFromDate(new Date()),
   })
+
   const setDate = (date) => {
     dispatch({ type: TYPES.DATE, value: date })
   }

@@ -46,6 +46,7 @@ const Auth: FC = () => {
         value.includes('expires_in')) ||
       INVALID_VK_AUTH_URL_ERROR,
   }
+  const onClickAuth = () => setTokenCreatedAt(new Date().getTime())
   return (
     <div className="flex flex-col space-y-4">
       <a
@@ -53,7 +54,7 @@ const Auth: FC = () => {
         target="_blank"
         className="button-primary w-96"
         rel="noreferrer"
-        onClick={() => setTokenCreatedAt(new Date().getTime())}
+        onClick={onClickAuth}
       >
         {vkAuthWindow
           ? 'Получить ссылку авторизации в ВКонтакте'

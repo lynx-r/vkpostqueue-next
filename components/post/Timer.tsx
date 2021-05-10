@@ -1,24 +1,17 @@
-import Button from '@/components/base/Button'
 import DateInput from '@/components/base/DateInput'
 import TimeInput from '@/components/base/TimeInput'
+import TimerControls from '@/components/post/TimerControls'
 import useTimerHelper from '@/hooks/useTimerHelper'
 import useTimerValidator from '@/hooks/useTimerValidator'
 import { DateTime } from '@/shared'
-import { FC, useEffect } from 'react'
+import { FC, memo, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 type TimerForm = { timer: DateTime }
 
 const Timer: FC = () => {
-  const {
-    state,
-    nearest,
-    roundTime,
-    addHours,
-    subHours,
-    setDate,
-    setTime,
-  } = useTimerHelper()
+  const timerHelper = useTimerHelper()
+  const { state, setDate, setTime } = timerHelper
 
   const {
     register,
@@ -32,34 +25,23 @@ const Timer: FC = () => {
     setValue('timer', { ...state }, { shouldValidate: true, shouldDirty: true })
   }, [state, setValue])
 
+  const onChangeDate = (e) => setDate(e.target.value)
+  const onChangeTime = (e) => setTime(e.target.value)
   return (
     <div className="space-y-2">
-      <div className="flex space-x-4">
-        <Button colorType="secondary" onClick={nearest}>
-          Ближайшее
-        </Button>
-        <Button colorType="secondary" onClick={roundTime}>
-          Округлить
-        </Button>
-        <Button colorType="secondary" onClick={() => addHours(1)}>
-          +1 ч.
-        </Button>
-        <Button colorType="secondary" onClick={() => subHours(1)}>
-          -1 ч.
-        </Button>
-      </div>
+      <TimerControls timerHelper={timerHelper} />
       <div className="flex space-x-4">
         <DateInput
           register={register('timer.date', dateInputValidator)}
           errors={errors}
-          onChange={(e) => setDate(e.target.value)}
+          onChange={onChangeDate}
         >
           Дата поста
         </DateInput>
         <TimeInput
           register={register('timer.time', timeInputValidator)}
           errors={errors}
-          onChange={(e) => setTime(e.target.value)}
+          onChange={onChangeTime}
         >
           Время поста
         </TimeInput>
@@ -68,4 +50,5 @@ const Timer: FC = () => {
   )
 }
 
-export default Timer
+// так как это самодостаточный компонент, оборачиваем его в memo
+export default memo(Timer)
