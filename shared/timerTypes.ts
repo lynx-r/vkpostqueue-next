@@ -1,5 +1,10 @@
-import { TYPES } from '@/reducers'
 import { Reducer } from 'react'
+
+export const TYPES = {
+  DATE: 'DATE',
+  TIME: 'TIME',
+  DATE_TIME: 'DATE_TIME',
+} as const
 
 export type OppOnHours = 'add' | 'sub'
 export type DateTime = { date: string; time: string }

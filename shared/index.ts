@@ -1,2 +1,2 @@
 export * from './timeUtils'
-export * from './TimerTypes'
+export * from './timerTypes'

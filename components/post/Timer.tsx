@@ -1,7 +1,7 @@
 import DateInput from '@/components/base/DateInput'
 import TimeInput from '@/components/base/TimeInput'
 import TimerControls from '@/components/post/TimerControls'
-import useTimerHelper from '@/hooks/useTimerHelper'
+import useTimer from '@/hooks/useTimer'
 import useTimerValidator from '@/hooks/useTimerValidator'
 import { DateTime } from '@/shared'
 import { FC, memo, useEffect } from 'react'
@@ -10,7 +10,7 @@ import { useForm } from 'react-hook-form'
 type TimerForm = { timer: DateTime }
 
 const Timer: FC = () => {
-  const timerHelper = useTimerHelper()
+  const timerHelper = useTimer()
   const { state, setDate, setTime } = timerHelper
 
   const {
