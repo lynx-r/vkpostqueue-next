@@ -8,13 +8,13 @@ export default defineConfig({
     backgroundColor: (theme) => ({
       ...theme('colors'),
       primary: colors.blue,
-      secondary: colors.pink,
+      secondary: colors.green,
       danger: colors.red,
     }),
     textColor: (theme) => ({
       ...theme('colors'),
       primary: colors.blue,
-      secondary: colors.pink,
+      secondary: colors.green,
       danger: colors.red,
     }),
   },
