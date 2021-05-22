@@ -1,4 +1,4 @@
-import TextError from '@/components/base/TextError'
+import { renderTextError } from '@/components/base/TextError'
 import UseFormHookProps from '@/shared/UseFormHookProps'
 import { ErrorMessage } from '@hookform/error-message'
 import { FC, InputHTMLAttributes } from 'react'
@@ -21,7 +21,7 @@ const DateInput: FC<InputProps> = ({
       <ErrorMessage
         errors={errors}
         name={register.name}
-        render={({ message }) => <TextError>{message}</TextError>}
+        render={renderTextError}
       />
     </div>
   )

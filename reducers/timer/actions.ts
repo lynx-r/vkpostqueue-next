@@ -1,7 +1,7 @@
 import {
   OppOnHours,
   TimerAction,
-  TimerHelper,
+  TimerReducerHook,
   TimerState,
   TYPES,
   addHoursAndReformat,
@@ -52,7 +52,7 @@ const oppHoursCreator = (dispatch, { time }, nearest, opp: OppOnHours) => (
 const timerActions = (
   dispatch: Dispatch<TimerAction>,
   state: TimerState,
-): TimerHelper => {
+): TimerReducerHook => {
   const setDate = (date) => {
     dispatch({ type: TYPES.DATE, value: date })
   }

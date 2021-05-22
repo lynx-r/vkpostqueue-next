@@ -8,4 +8,8 @@ const TextError: FC = ({ children }) => {
   )
 }
 
-export default TextError
+const renderTextError: FC<{ message: string }> = ({ message }) => (
+  <TextError>{message}</TextError>
+)
+
+export { TextError, renderTextError }

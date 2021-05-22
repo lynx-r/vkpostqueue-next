@@ -1,11 +1,11 @@
 import Button from '@/components/base/Button'
-import { TimerHelper } from '@/shared'
+import { TimerReducerHook } from '@/shared'
 import { FC } from 'react'
 
-type TimerControlsProps = { timerHelper: TimerHelper }
+type TimerControlsProps = { timerReducer: TimerReducerHook }
 
-const TimerControls: FC<TimerControlsProps> = ({ timerHelper }) => {
-  const { nearest, roundTime, addHours, subHours } = timerHelper
+const TimerControls: FC<TimerControlsProps> = ({ timerReducer }) => {
+  const { nearest, roundTime, addHours, subHours } = timerReducer
 
   const onClickAddHour = () => addHours(1)
   const onClickSubHour = () => subHours(1)

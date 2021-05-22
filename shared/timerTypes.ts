@@ -13,7 +13,7 @@ export type TimerAction = { type: keyof typeof TYPES; value: DateTime | string }
 
 export type TimerReducer = Reducer<TimerState, TimerAction>
 
-export type TimerHelper = {
+export type TimerReducerHook = {
   state: TimerState
   nearest: () => void
   roundTime: () => void

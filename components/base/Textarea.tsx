@@ -1,4 +1,4 @@
-import TextError from '@/components/base/TextError'
+import { renderTextError } from '@/components/base/TextError'
 import UseFormHookProps from '@/shared/UseFormHookProps'
 import { ErrorMessage } from '@hookform/error-message'
 import { FC, TextareaHTMLAttributes } from 'react'
@@ -20,7 +20,7 @@ const Textarea: FC<TextareaProps> = ({
       <ErrorMessage
         errors={errors}
         name={register.name}
-        render={({ message }) => <TextError>{message}</TextError>}
+        render={renderTextError}
       />
     </div>
   )
