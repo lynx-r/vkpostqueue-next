@@ -1,17 +1,15 @@
 import DateInput from '@/components/base/DateInput'
 import TimeInput from '@/components/base/TimeInput'
 import TimerControls from '@/components/post/TimerControls'
-import useTimerReducer from '@/hooks/useTimerReducer'
 import useTimerValidator from '@/hooks/useTimerValidator'
-import { DateTime } from '@/shared'
-import { FC, memo, useEffect } from 'react'
+import { DateTime, TimerContext } from '@/shared'
+import { FC, useContext, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
 type TimerForm = { timer: DateTime }
 
 const Timer: FC = () => {
-  const timerReducer = useTimerReducer()
-  const { state, setDate, setTime } = timerReducer
+  const { state, setDate, setTime } = useContext(TimerContext)
 
   const {
     register,
@@ -29,7 +27,7 @@ const Timer: FC = () => {
   const onChangeTime = (e) => setTime(e.target.value)
   return (
     <div className="space-y-2">
-      <TimerControls timerReducer={timerReducer} />
+      <TimerControls />
       <div className="flex space-x-4">
         <DateInput
           register={register('timer.date', dateInputValidator)}
@@ -50,5 +48,4 @@ const Timer: FC = () => {
   )
 }
 
-// так как это самодостаточный компонент, оборачиваем его в memo
-export default memo(Timer)
+export default Timer
